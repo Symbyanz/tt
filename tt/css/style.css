@@ -1137,6 +1137,7 @@ body.ie ._ibg img {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  appearance: none !important;
   outline: none;
   width: 100%;
   height: 100%;
@@ -1148,6 +1149,10 @@ body.ie ._ibg img {
 
 .form__select select:focus {
   border: 1px solid #4488bb;
+}
+
+.form__select select::-ms-expand {
+  display: none;
 }
 
 .form__error {

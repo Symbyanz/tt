@@ -2,6 +2,7 @@
 let { src, dest } = require("gulp");
 let fs = require('fs');
 let gulp = require("gulp");
+let babel = require("gulp-babel");
 let browsersync = require("browser-sync").create();
 let autoprefixer = require("gulp-autoprefixer");
 let scss = require("gulp-sass")(require("node-sass"));
@@ -101,6 +102,18 @@ function js() {
 	return src(path.src.js, {})
 		.pipe(plumber())
 		.pipe(fileinclude())
+		.pipe(
+			babel({
+				presets: [
+					[
+						"@babel/env",
+						{
+							modules: false
+						}
+					]
+				]
+			})
+		)
 		.pipe(gulp.dest(path.build.js))
 		.pipe(uglify(/* options */))
 		.pipe(
